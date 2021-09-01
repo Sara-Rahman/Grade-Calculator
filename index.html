@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grade Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #88a8da;
+            font-size: 12px;
+        }
+        
+        body,
+        button,
+        input {
+            font-family: 'Righteous', cursive;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+        }
+        
+        .background {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .container {
+            flex: 0 1 700px;
+            margin: auto;
+            padding: 10px;
+        }
+        
+        .screen {
+            position: relative;
+            background: #3e3e3e;
+            border-radius: 15px;
+        }
+        
+        .screen:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            right: 20px;
+            bottom: 0;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
+            z-index: -1;
+        }
+        
+        .screen-body {
+            display: flex;
+        }
+        
+        .screen-body-item {
+            flex: 1;
+            padding: 50px;
+        }
+        
+        .screen-body-item.left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .app-title {
+            display: flex;
+            /*flex-direction: column;*/
+            justify-content: center;
+            align-items: center;
+            color: #33d9b2;
+            font-size: 26px;
+            text-transform: uppercase;
+            border-left: 4px solid #218c74;
+            padding: 10px;
+        }
+        
+        .app-form-group {
+            margin-bottom: 15px;
+        }
+        
+        .app-form-group.buttons {
+            margin-bottom: 0;
+            text-align: right;
+        }
+        
+        .app-form-control {
+            width: 100%;
+            padding: 10px 0;
+            background: none;
+            border: none;
+            border-bottom: 1px solid #666;
+            color: #ddd;
+            font-size: 14px;
+            text-transform: uppercase;
+            outline: none;
+            transition: border-color .2s;
+        }
+        
+        .app-form-control::placeholder {
+            color: #FFF;
+        }
+        
+        .app-form-control:focus {
+            border-bottom-color: #ddd;
+        }
+        
+        .app-form-button {
+            background: none;
+            border: none;
+            color: #42b7cc;
+            font-size: 14px;
+            cursor: pointer;
+            outline: none;
+            text-transform: uppercase;
+        }
+        
+        .app-form-button:hover {
+            color: #364563;
+            ;
+        }
+        
+        .showdata {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            padding-top: -10px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="screen">
+                <div class="screen-body">
+                    <div class="screen-body-item left">
+                        <div class="app-title">
+                            <div class="animated infinite pulse">
+                                Student <br> Grade <br> Calculator
+                            </div>
+                        </div>
+                    </div>
+                    <div class="screen-body-item">
+                        <div class="app-form">
+                            <div class="app-form-group">
+                                <input type="text" class="app-form-control" placeholder="WEB PROGRAMMING" id="wd">
+                            </div>
+                            <div class="app-form-group">
+                                <input type="text" class="app-form-control" placeholder="MATHS" id="maths">
+                            </div>
+                            <div class="app-form-group">
+                                <input type="text" class="app-form-control" placeholder="COMPUTER GRAPHICS" id="comp">
+                            </div>
+                            <div class="app-form-group">
+                                <input type="text" class="app-form-control" placeholder="DATA STRUCTURE" id="ds">
+                            </div>
+                            <div class="app-form-group">
+                                <input type="text" class="app-form-control" placeholder="OPERATING SYSTEM" id="os">
+                            </div>
+                            <div>
+                                <input type="button" name="" value="show Percentage" class="app-form-button" onclick="calcy()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-form-group showdata">
+                    <p id="showData"> </p>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            const calcy = () => {
+                let wd = document.getElementById('wd').value;
+                let maths = document.getElementById('maths').value;
+                let comp = document.getElementById('comp').value;
+                let ds = document.getElementById('ds').value;
+                let os = document.getElementById('os').value;
+                let grade = "";
+
+                let total = parseFloat(wd) + parseFloat(maths) + parseFloat(comp) + parseFloat(ds) + parseFloat(os);
+                alert(total);
+                let percent = (total / 500) * 100;
+                alert(percent);
+
+                if (percent <= 100 && percent >= 80) {
+                    grade = 'A';
+                } else if (percent <= 79 && percent >= 60) {
+                    grade = 'B';
+                } else if (percent <= 59 && percent >= 40) {
+                    grade = 'C';
+                } else {
+                    grade = 'F';
+                }
+
+                if (percent >= 40) {
+
+
+                    document.getElementById('showData').innerHTML = `Out of 500 your total grade is ${total} and percentage is ${percent}%. <br> Your grade is ${grade}. <br> You have passed! `
+                } else {
+                    document.getElementById('showData').innerHTML = `Out of 500 your total grade is ${total} and percentage is ${percent}%. <br> Your grade is ${grade}. <br> You have failed! `
+                }
+            }
+        </script>
+</body>
+
+</html>
